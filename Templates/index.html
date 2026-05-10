@@ -1,11 +1,225 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator</title>
+
+    <title>Kalkulator Modern Flask</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-    
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Kalkulator Flask
+        </div>
+
+        <ul class="nav-menu">
+
+            <li>
+                <button class="menu-btn active" data-menu="aritmatika">
+                    Aritmatika
+                </button>
+            </li>
+
+            <li>
+                <button class="menu-btn" data-menu="logika">
+                    Logika
+                </button>
+            </li>
+
+            <li>
+                <button class="menu-btn" data-menu="transformasi">
+                    Transformasi
+                </button>
+            </li>
+
+        </ul>
+
+        <button id="darkBtn">
+            🌙
+        </button>
+
+    </nav>
+
+    <!-- CONTAINER -->
+
+    <div class="container">
+
+        <!-- DISPLAY -->
+
+        <div class="display-box">
+
+            <h1>Kalkulator </h1>
+
+        </div>
+
+        <!-- KALKULATOR -->
+
+        <div class="calculator">
+
+            <form method="POST">
+
+                <!-- INPUT -->
+
+                <div class="input-box">
+
+                    <input type="number"
+                        name="angka1"
+                        placeholder="Masukkan angka pertama"
+                        required>
+
+                    <input type="number"
+                        name="angka2"
+                        placeholder="Masukkan angka kedua">
+
+                </div>
+
+                <!-- MENU ARITMATIKA -->
+
+                <div class="menu-content active" id="aritmatika">
+
+                    <div class="buttons">
+
+                        <button type="submit" name="operasi" value="tambah">+</button>
+
+                        <button type="submit" name="operasi" value="kurang">−</button>
+
+                        <button type="submit" name="operasi" value="kali">×</button>
+
+                        <button type="submit" name="operasi" value="bagi">÷</button>
+
+                        <button type="submit" name="operasi" value="modulus">%</button>
+
+                        <button type="submit" name="operasi" value="pangkat">^</button>
+
+                        <button type="submit" name="operasi" value="akar">√</button>
+
+                        <button type="submit" name="operasi" value="floor">//</button>
+
+                        <button type="submit" name="operasi" value="faktorial">!</button>
+
+                        <button type="submit" name="operasi" value="fibonacci">Fib</button>
+
+                    </div>
+
+                </div>
+
+                <!-- MENU LOGIKA -->
+
+                <div class="menu-content" id="logika">
+
+                    <div class="buttons">
+
+                        <button type="submit" name="operasi" value="and">AND</button>
+
+                        <button type="submit" name="operasi" value="or">OR</button>
+
+                        <button type="submit" name="operasi" value="not">NOT</button>
+
+                        <button type="submit" name="operasi" value="xor">XOR</button>
+
+                        <button type="submit" name="operasi" value="nand">NAND</button>
+
+                        <button type="submit" name="operasi" value="nor">NOR</button>
+
+                    </div>
+
+                </div>
+
+                <!-- MENU TRANSFORMASI -->
+
+                <div class="menu-content" id="transformasi">
+
+                    <div class="buttons">
+
+                        <button type="submit" name="operasi" value="biner">
+                            Bin
+                        </button>
+
+                        <button type="submit" name="operasi" value="oktal">
+                            Oct
+                        </button>
+
+                        <button type="submit" name="operasi" value="heksa">
+                            Hex
+                        </button>
+
+                        <button type="submit" name="operasi" value="desimal">
+                            Dec
+                        </button>
+
+                        <button type="submit" name="operasi" value="fahrenheit">
+                            °F
+                        </button>
+
+                        <button type="submit" name="operasi" value="kelvin">
+                            K
+                        </button>
+
+                        <button type="submit" name="operasi" value="reamur">
+                            °R
+                        </button>
+
+                        <button type="submit" name="operasi" value="usd">
+                            USD
+                        </button>
+
+                        <button type="submit" name="operasi" value="eur">
+                            EUR
+                        </button>
+
+                        <button type="submit" name="operasi" value="sgd">
+                            SGD
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+            <!-- HASIL -->
+
+            {% if hasil %}
+
+            <div class="hasil">
+
+                <h2>Hasil</h2>
+
+                <p>{{ hasil.hasil }}</p>
+
+                <div class="detail">
+
+                    <h3>Rumus</h3>
+                    <small>{{ hasil.rumus }}</small>
+
+                    <h3>Langkah</h3>
+                    <small>{{ hasil.langkah }}</small>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/darkmode.js') }}"></script>
+
 </body>
+
 </html>
