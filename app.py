@@ -16,8 +16,20 @@ def index():
 
     if request.method == "POST":
 
-        angka1 = float(request.form["angka1"])
-        angka2 = float(request.form["angka2"])
+        angka1 = request.form.get("angka1", "")
+        angka2 = request.form.get("angka2", "")
+
+        # INPUT ANGKA 1
+        if angka1 != "":
+            angka1 = float(angka1)
+        else:
+            angka1 = 0
+
+        # INPUT ANGKA 2
+        if angka2 != "":
+            angka2 = float(angka2)
+        else:
+            angka2 = 0
 
         operasi = request.form["operasi"]
 

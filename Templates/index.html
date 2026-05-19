@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Kalkulator Modern Flask</title>
+    <title>Kalkulator </title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
@@ -20,7 +20,7 @@
     <nav class="navbar">
 
         <div class="logo">
-            Kalkulator Flask
+            Kalkulator 
         </div>
 
         <ul class="nav-menu">
@@ -67,127 +67,136 @@
 
         <div class="calculator">
 
-            <form method="POST">
+           <form method="POST" id="calcForm">
 
-                <!-- INPUT -->
+    <!-- INPUT -->
 
-                <div class="input-box">
+    <div class="input-box">
 
-                    <input type="number"
-                        name="angka1"
-                        placeholder="Masukkan angka pertama"
-                        required>
+        <input
+            type="text"
+            name="angka1"
+            placeholder="Masukkan angka pertama"
+            required
+        >
 
-                    <input type="number"
-                        name="angka2"
-                        placeholder="Masukkan angka kedua">
+       <input
+            type="text"
+            name="angka2"
+            id="angka2"
+            placeholder="Masukkan angka kedua"
+        >
 
-                </div>
+    </div>
 
-                <!-- MENU ARITMATIKA -->
+    <!-- OPERASI TERPILIH -->
 
-                <div class="menu-content active" id="aritmatika">
+    <input type="hidden" name="operasi" id="operasiInput">
 
-                    <div class="buttons">
+    <!-- MENU ARITMATIKA -->
 
-                        <button type="submit" name="operasi" value="tambah">+</button>
+    <div class="menu-content active" id="aritmatika">
 
-                        <button type="submit" name="operasi" value="kurang">−</button>
+        <div class="buttons">
 
-                        <button type="submit" name="operasi" value="kali">×</button>
+            <button type="button" class="op-btn" data-operasi="tambah">+</button>
 
-                        <button type="submit" name="operasi" value="bagi">÷</button>
+            <button type="button" class="op-btn" data-operasi="kurang">−</button>
 
-                        <button type="submit" name="operasi" value="modulus">%</button>
+            <button type="button" class="op-btn" data-operasi="kali">×</button>
 
-                        <button type="submit" name="operasi" value="pangkat">^</button>
+            <button type="button" class="op-btn" data-operasi="bagi">÷</button>
 
-                        <button type="submit" name="operasi" value="akar">√</button>
+            <button type="button" class="op-btn" data-operasi="modulus">%</button>
 
-                        <button type="submit" name="operasi" value="floor">//</button>
+            <button type="button" class="op-btn" data-operasi="pangkat">^</button>
 
-                        <button type="submit" name="operasi" value="faktorial">!</button>
+            <button type="button" class="op-btn" data-operasi="akar">√</button>
 
-                        <button type="submit" name="operasi" value="fibonacci">Fib</button>
+            <button type="button" class="op-btn" data-operasi="floor">//</button>
 
-                    </div>
+            <button type="button" class="op-btn" data-operasi="faktorial">!</button>
 
-                </div>
+            <button type="button" class="op-btn" data-operasi="fibonacci">Fib</button>
 
-                <!-- MENU LOGIKA -->
+        </div>
 
-                <div class="menu-content" id="logika">
+    </div>
 
-                    <div class="buttons">
+    <!-- MENU LOGIKA -->
 
-                        <button type="submit" name="operasi" value="and">AND</button>
+    <div class="menu-content" id="logika">
 
-                        <button type="submit" name="operasi" value="or">OR</button>
+        <div class="buttons">
 
-                        <button type="submit" name="operasi" value="not">NOT</button>
+            <button type="button" class="op-btn" data-operasi="and">AND</button>
 
-                        <button type="submit" name="operasi" value="xor">XOR</button>
+            <button type="button" class="op-btn" data-operasi="or">OR</button>
 
-                        <button type="submit" name="operasi" value="nand">NAND</button>
+            <button type="button" class="op-btn" data-operasi="not">NOT</button>
 
-                        <button type="submit" name="operasi" value="nor">NOR</button>
+            <button type="button" class="op-btn" data-operasi="xor">XOR</button>
 
-                    </div>
+            <button type="button" class="op-btn" data-operasi="nand">NAND</button>
 
-                </div>
+            <button type="button" class="op-btn" data-operasi="nor">NOR</button>
 
-                <!-- MENU TRANSFORMASI -->
+        </div>
 
-                <div class="menu-content" id="transformasi">
+    </div>
 
-                    <div class="buttons">
+    <!-- MENU TRANSFORMASI -->
 
-                        <button type="submit" name="operasi" value="biner">
-                            Bin
-                        </button>
+    <div class="menu-content" id="transformasi">
 
-                        <button type="submit" name="operasi" value="oktal">
-                            Oct
-                        </button>
+        <div class="buttons">
 
-                        <button type="submit" name="operasi" value="heksa">
-                            Hex
-                        </button>
+            <button type="button" class="op-btn" data-operasi="biner">Bin</button>
 
-                        <button type="submit" name="operasi" value="desimal">
-                            Dec
-                        </button>
+            <button type="button" class="op-btn" data-operasi="oktal">Oct</button>
 
-                        <button type="submit" name="operasi" value="fahrenheit">
-                            °F
-                        </button>
+            <button type="button" class="op-btn" data-operasi="heksa">Hex</button>
 
-                        <button type="submit" name="operasi" value="kelvin">
-                            K
-                        </button>
+            <button type="button" class="op-btn" data-operasi="desimal">Dec</button>
 
-                        <button type="submit" name="operasi" value="reamur">
-                            °R
-                        </button>
+            <button type="button" class="op-btn" data-operasi="fahrenheit">°F</button>
 
-                        <button type="submit" name="operasi" value="usd">
-                            USD
-                        </button>
+            <button type="button" class="op-btn" data-operasi="kelvin">K</button>
 
-                        <button type="submit" name="operasi" value="eur">
-                            EUR
-                        </button>
+            <button type="button" class="op-btn" data-operasi="reamur">°R</button>
 
-                        <button type="submit" name="operasi" value="sgd">
-                            SGD
-                        </button>
+            <button type="button" class="op-btn" data-operasi="usd">USD</button>
 
-                    </div>
+            <button type="button" class="op-btn" data-operasi="eur">EUR</button>
 
-                </div>
+            <button type="button" class="op-btn" data-operasi="sgd">SGD</button>
 
-            </form>
+        </div>
 
+    </div>
+
+    <!-- OPERASI AKTIF -->
+
+    <div class="selected-operasi">
+
+        <p>
+            Operasi dipilih:
+            <span id="selectedText">
+                Belum dipilih
+            </span>
+        </p>
+
+    </div>
+
+    <!-- TOMBOL HITUNG -->
+
+    <button type="submit" class="hitung-btn">
+
+        Hitung
+
+    </button>
+
+</form>
             <!-- HASIL -->
 
             {% if hasil %}

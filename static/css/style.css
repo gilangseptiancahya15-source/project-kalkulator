@@ -248,3 +248,77 @@ body{
     }
 
 }
+
+.select-box{
+    margin-bottom:20px;
+}
+
+.select-box select{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:15px;
+    background:#1e1e1e;
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+
+.hitung-btn{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:15px;
+    background:#2563eb;
+    color:white;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.hitung-btn:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+/* LIGHT MODE */
+
+.light-mode .select-box select{
+    background:#f1f5f9;
+    color:#111;
+}
+
+.selected-operasi{
+    margin-top:20px;
+    margin-bottom:20px;
+    text-align:center;
+    font-size:16px;
+}
+
+.selected-operasi span{
+    color:#60a5fa;
+    font-weight:bold;
+}
+
+.op-btn.selected{
+    background:#60a5fa !important;
+    transform:scale(1.05);
+}
+
+.hitung-btn{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:15px;
+    background:#16a34a;
+    color:white;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.hitung-btn:hover{
+    background:#15803d;
+}
