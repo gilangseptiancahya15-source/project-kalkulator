@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Kalkulator </title>
+    <title>KalkulatorKu</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
@@ -20,7 +20,7 @@
     <nav class="navbar">
 
         <div class="logo">
-            Kalkulator 
+            KalkulatorKu
         </div>
 
         <ul class="nav-menu">
@@ -45,7 +45,7 @@
 
         </ul>
 
-        <button id="darkBtn">
+        <button id="themeToggle">
             🌙
         </button>
 
@@ -59,7 +59,7 @@
 
         <div class="display-box">
 
-            <h1>Kalkulator </h1>
+            <h1>KalkulatorKu</h1>
 
         </div>
 
@@ -73,15 +73,18 @@
 
     <div class="input-box">
 
-        <input
+       <input
             type="text"
+            class="logic-input"
             name="angka1"
+            id="angka1"
             placeholder="Masukkan angka pertama"
             required
         >
 
        <input
             type="text"
+            class="logic-input"
             name="angka2"
             id="angka2"
             placeholder="Masukkan angka kedua"
@@ -146,31 +149,69 @@
     </div>
 
     <!-- MENU TRANSFORMASI -->
-
     <div class="menu-content" id="transformasi">
 
-        <div class="buttons">
+        <div class="transform-tabs" style="display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto;">
+            <button type="button" class="sub-tab-btn active" data-target="cat-bilangan">Bilangan</button>
+            <button type="button" class="sub-tab-btn" data-target="cat-suhu">Suhu</button>
+            <button type="button" class="sub-tab-btn" data-target="cat-uang">Mata Uang</button>
+        </div>
 
-            <button type="button" class="op-btn" data-operasi="biner">Bin</button>
+        <div id="cat-bilangan" class="transform-category active">
+            <h3 style="margin-bottom: 10px;">Transformasi Bilangan</h3>
+            <div class="flex-row-select">
+                <select class="op-select-from" data-cat="bilangan">
+                    <option value="desimal">Desimal</option>
+                    <option value="biner">Biner</option>
+                    <option value="oktal">Oktal</option>
+                    <option value="heksa">Heksa</option>
+                </select>
+                <span>Ke</span>
+                <select class="op-select-to" data-cat="bilangan">
+                    <option value="biner">Biner</option>
+                    <option value="desimal">Desimal</option>
+                    <option value="oktal">Oktal</option>
+                    <option value="heksa">Heksa</option>
+                </select>
+            </div>
+        </div>
 
-            <button type="button" class="op-btn" data-operasi="oktal">Oct</button>
+        <div id="cat-suhu" class="transform-category" style="display: none;">
+            <h3 style="margin-bottom: 10px;">Konversi Suhu</h3>
+            <div class="flex-row-select">
+                <select class="op-select-from" data-cat="suhu">
+                    <option value="celcius">Celcius</option>
+                    <option value="fahrenheit">Fahrenheit</option>
+                    <option value="kelvin">Kelvin</option>
+                    <option value="reamur">Reamur</option>
+                </select>
+                <span>Ke</span>
+                <select class="op-select-to" data-cat="suhu">
+                    <option value="fahrenheit">Fahrenheit</option>
+                    <option value="celcius">Celcius</option>
+                    <option value="kelvin">Kelvin</option>
+                    <option value="reamur">Reamur</option>
+                </select>
+            </div>
+        </div>
 
-            <button type="button" class="op-btn" data-operasi="heksa">Hex</button>
-
-            <button type="button" class="op-btn" data-operasi="desimal">Dec</button>
-
-            <button type="button" class="op-btn" data-operasi="fahrenheit">°F</button>
-
-            <button type="button" class="op-btn" data-operasi="kelvin">K</button>
-
-            <button type="button" class="op-btn" data-operasi="reamur">°R</button>
-
-            <button type="button" class="op-btn" data-operasi="usd">USD</button>
-
-            <button type="button" class="op-btn" data-operasi="eur">EUR</button>
-
-            <button type="button" class="op-btn" data-operasi="sgd">SGD</button>
-
+        <div id="cat-uang" class="transform-category" style="display: none;">
+            <h3 style="margin-bottom: 10px;">Konversi Mata Uang</h3>
+            <div class="flex-row-select">
+                <select class="op-select-from" data-cat="uang">
+                    <option value="idr">IDR</option>
+                    <option value="usd">USD</option>
+                    <option value="eur">EUR</option>
+                    <option value="sgd">SGD</option>
+                </select>
+                <span>Ke</span>
+                <select class="op-select-to" data-cat="uang">
+                    <option value="usd">USD</option>
+                    <option value="idr">IDR</option>
+                    <option value="eur">EUR</option>
+                    <option value="sgd">SGD</option>
+                </select>
+            </div>
         </div>
 
     </div>

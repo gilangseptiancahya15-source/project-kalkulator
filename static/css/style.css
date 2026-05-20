@@ -322,3 +322,46 @@ body{
 .hitung-btn:hover{
     background:#15803d;
 }
+
+/* NEW STYLES FOR FLEXIBLE TRANSFORMS */
+.flex-row-select {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.flex-row-select select {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #1e1e1e;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+.light-mode .flex-row-select select {
+    background: #f1f5f9;
+    color: #111;
+}
+
+.sub-tab-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    background: #1e1e1e;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+}
+.sub-tab-btn.active {
+    background: #2563eb;
+}
+.light-mode .sub-tab-btn {
+    background: #e2e8f0;
+    color: #111;
+}
+.light-mode .sub-tab-btn.active {
+    background: #2563eb;
+    color: white;
+}
