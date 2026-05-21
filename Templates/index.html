@@ -261,6 +261,26 @@
             </div>
 
             {% endif %}
+            
+            <!-- HISTORY -->
+            {% if history and history|length > 0 %}
+            <div class="history-section">
+                <h2>Riwayat Perhitungan</h2>
+                <ul class="history-list">
+                    {% for item in history|reverse %}
+                    <li>
+                        <div class="history-item">
+                            <span class="history-result">{{ item.hasil }}</span>
+                            <div class="history-detail">
+                                <strong>Rumus:</strong> {{ item.rumus }}<br>
+                                <strong>Langkah:</strong> {{ item.langkah }}
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
 
         </div>
 
