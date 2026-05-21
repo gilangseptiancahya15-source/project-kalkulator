@@ -23,7 +23,13 @@ def index():
         # INPUT ANGKA 1
         if angka1 != "":
             try:
-                angka1 = float(angka1)
+                f1 = float(angka1)
+                if f1.is_integer():
+                    angka1 = int(f1)
+                else:
+                    angka1 = f1
+                val1 = float(angka1)
+                angka1 = int(val1) if val1.is_integer() else val1
             except ValueError:
                 pass # Tetap sebagai string (contoh untuk Heksa)
         else:
@@ -32,7 +38,13 @@ def index():
         # INPUT ANGKA 2
         if angka2 != "":
             try:
-                angka2 = float(angka2)
+                f2 = float(angka2)
+                if f2.is_integer():
+                    angka2 = int(f2)
+                else:
+                    angka2 = f2
+                val2 = float(angka2)
+                angka2 = int(val2) if val2.is_integer() else val2
             except ValueError:
                 pass
         else:
