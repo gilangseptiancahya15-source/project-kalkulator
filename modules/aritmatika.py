@@ -6,7 +6,11 @@ def tambah(a, b):
     return {
         "hasil": hasil,
         "rumus": f"{a} + {b}",
-        "langkah": f"{a} ditambah {b} = {hasil}"
+        "langkah": [
+            "1. Identifikasi Operasi: Penjumlahan (+)",
+            f"2. Nilai a = {a}, Nilai b = {b}",
+            f"3. Hitung: {a} + {b} = {hasil}"
+        ]
     }
 
 def kurang(a, b):
@@ -15,7 +19,11 @@ def kurang(a, b):
     return {
         "hasil": hasil,
         "rumus": f"{a} - {b}",
-        "langkah": f"{a} dikurang {b} = {hasil}"
+        "langkah": [
+            "1. Identifikasi Operasi: Pengurangan (-)",
+            f"2. Nilai a = {a}, Nilai b = {b}",
+            f"3. Hitung: {a} - {b} = {hasil}"
+        ]
     }
 
 def kali(a, b):
@@ -24,7 +32,11 @@ def kali(a, b):
     return {
         "hasil": hasil,
         "rumus": f"{a} × {b}",
-        "langkah": f"{a} dikali {b} = {hasil}"
+         "langkah": [
+            "1. Identifikasi Operasi: Perkalian (×)",
+            f"2. Nilai a = {a}, Nilai b = {b}",
+            f"3. Hitung: {a} × {b} = {hasil}"
+        ]
     }
 
 def bagi(a, b):
@@ -41,7 +53,11 @@ def bagi(a, b):
     return {
         "hasil": hasil,
         "rumus": f"{a} ÷ {b}",
-        "langkah": f"{a} dibagi {b} = {hasil}"
+        "langkah": [
+            "1. Identifikasi Operasi: Pembagian (÷)",
+            f"2. Nilai a = {a}, Nilai b = {b}",
+            f"3. Hitung: {a} ÷ {b} = {hasil}"
+        ]
     }
 
 def modulus(a, b):
@@ -50,7 +66,11 @@ def modulus(a, b):
     return {
         "hasil": hasil,
         "rumus": f"{a} % {b}",
-        "langkah": f"Sisa hasil bagi {a} % {b} = {hasil}"
+          "langkah": [
+            "1. Identifikasi Operasi: Modulus / Sisa Bagi (%)",
+            f"2. Nilai a = {a}, Nilai b = {b}",
+            f"3. Hitung: {a} % {b} = {hasil}"
+        ]
     }
 
 def pangkat(a, b):
@@ -59,7 +79,11 @@ def pangkat(a, b):
     return {
         "hasil": hasil,
         "rumus": f"{a}^{b}",
-        "langkah": f"{a} pangkat {b} = {hasil}"
+        "langkah": [
+            "1. Identifikasi Operasi: Pemangkatan (^)",
+            f"2. Nilai a = {a}, Nilai b = {b}",
+            f"3. Hitung: {a}^{b} = {hasil}"
+        ]
     }
 
 def akar(a):
@@ -68,7 +92,11 @@ def akar(a):
     return {
         "hasil": hasil,
         "rumus": f"√{a}",
-        "langkah": f"Akar dari {a} = {hasil}"
+         "langkah": [
+            "1. Identifikasi Operasi: Akar Kuadrat (√)",
+            f"2. Nilai = {a}",
+            f"3. Hitung: √{a} = {hasil}"
+        ]
     }
 
 def floor_division(a, b):
@@ -77,16 +105,29 @@ def floor_division(a, b):
     return {
         "hasil": hasil,
         "rumus": f"{a} // {b}",
-        "langkah": f"Floor division {a} // {b} = {hasil}"
+        "langkah": [
+            "1. Identifikasi Operasi: Pembagian Floor (//)",
+            f"2. Nilai a = {a}, Nilai b = {b}",
+            f"3. Hitung: {a} // {b} = {hasil}"
+        ]
     }
 
 def faktorial(a):
     hasil = math.factorial(int(a))
 
+    langkah = [
+        "1. Identifikasi Operasi: Faktorial (!)",
+        f"2. Nilai = {a}"
+    ]
+    if int(a) <= 10:
+        deret = " × ".join(str(i) for i in range(int(a), 0, -1))
+        langkah.append(f"3. Penjabaran: {deret}")
+    langkah.append(f"Hasil: {a}! = {hasil}")
+
     return {
         "hasil": hasil,
         "rumus": f"{a}!",
-        "langkah": f"Faktorial dari {a} = {hasil}"
+        "langkah": langkah
     }
 
 def fibonacci(n):
@@ -99,5 +140,9 @@ def fibonacci(n):
     return {
         "hasil": deret,
         "rumus": "Fibonacci",
-        "langkah": f"Deret fibonacci {n} angka pertama"
+        "langkah": [
+            "1. Identifikasi Operasi: Deret Fibonacci",
+            f"2. Jumlah angka = {n}",
+            f"3. Deret: {', '.join(map(str, deret))}"
+        ]
     }

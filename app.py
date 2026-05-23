@@ -17,6 +17,21 @@ def index():
 
     if request.method == "POST":
 
+        if request.form.get("action") == "clear_history":
+            history.clear()
+            return render_template("index.html", hasil=None, history=history)
+
+         # Hapus satu item riwayat berdasarkan indeks
+        if request.form.get("action") == "delete_one":
+            try:
+                idx = int(request.form.get("delete_index", -1))
+                if 0 <= idx < len(history):
+                    history.pop(idx)
+            except (ValueError, IndexError):
+                pass
+            return render_template("index.html", hasil=None, history=history)
+
+
         angka1 = request.form.get("angka1", "")
         angka2 = request.form.get("angka2", "")
 

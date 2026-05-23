@@ -25,11 +25,29 @@ def konversi_bilangan(angka_str, dari, ke):
         res = hex(dec)[2:].upper()
     else:
         return {"hasil": "Error", "rumus": "-", "langkah": "Basis tujuan tidak valid"}
+    
+    langkah = []
+    if dari != "desimal":
+        langkah.append(f"Ubah {dari.capitalize()} ke Desimal:")
+        if dari == "biner":
+            langkah.append(f"Biner {angka_str} -> Desimal = {dec}")
+        elif dari == "oktal":
+            langkah.append(f"Oktal {angka_str} -> Desimal = {dec}")
+        elif dari == "heksa":
+            langkah.append(f"Heksa {angka_str} -> Desimal = {dec}")
+    
+    if ke != "desimal":
+        langkah.append(f"Ubah Desimal {dec} ke {ke.capitalize()}:")
+        langkah.append(f"Desimal {dec} -> {ke.capitalize()} = {res}")
+        
+    if dari == ke:
+        langkah.append("Tidak ada konversi yang diperlukan (basis asal dan tujuan sama).")
+
 
     return {
         "hasil": res,
         "rumus": f"{dari.capitalize()} → {ke.capitalize()}",
-        "langkah": f"{angka_str} ({dari.capitalize()}) dikonversi menjadi {res} ({ke.capitalize()})"
+         "langkah": langkah
     }
 
 def konversi_suhu(suhu, dari, ke):
@@ -61,11 +79,34 @@ def konversi_suhu(suhu, dari, ke):
         res = c * 4/5
     else:
         return {"hasil": "Error"}
+    
+    langkah = []
+    if dari != "celcius":
+        langkah.append(f"1. Ubah {dari.capitalize()} ke Celcius:")
+        if dari == "fahrenheit":
+            langkah.append(f"&nbsp;&nbsp;&nbsp;C = ({suhu} - 32) * 5/9 = {c}")
+        elif dari == "kelvin":
+            langkah.append(f"&nbsp;&nbsp;&nbsp;C = {suhu} - 273.15 = {c}")
+        elif dari == "reamur":
+            langkah.append(f"&nbsp;&nbsp;&nbsp;C = {suhu} * 5/4 = {c}")
+            
+    if ke != "celcius":
+        langkah.append(f"2. Ubah Celcius ({c}) ke {ke.capitalize()}:")
+        if ke == "fahrenheit":
+            langkah.append(f"&nbsp;&nbsp;&nbsp;F = ({c} * 9/5) + 32 = {res}")
+        elif ke == "kelvin":
+            langkah.append(f"&nbsp;&nbsp;&nbsp;K = {c} + 273.15 = {res}")
+        elif ke == "reamur":
+            langkah.append(f"&nbsp;&nbsp;&nbsp;R = {c} * 4/5 = {res}")
+            
+    if dari == ke:
+        langkah.append("Tidak ada konversi (suhu asal dan tujuan sama).")
+
 
     return {
         "hasil": round(res, 2),
         "rumus": f"{dari.capitalize()} → {ke.capitalize()}",
-        "langkah": f"{suhu} {dari.capitalize()} dikonversi menjadi {round(res, 2)} {ke.capitalize()}"
+        "langkah": langkah
     }
 
 def konversi_mata_uang(jumlah, dari, ke):
@@ -90,9 +131,21 @@ def konversi_mata_uang(jumlah, dari, ke):
     
     # Convert IDR to Target
     res = idr / rates[ke]
+
+    langkah = []
+    if dari != "idr":
+        langkah.append(f"1. Ubah {dari.upper()} ke IDR (Rate: {rates[dari]}):")
+        langkah.append(f"&nbsp;&nbsp;&nbsp;{jumlah} * {rates[dari]} = {idr}")
+    
+    if ke != "idr":
+        langkah.append(f"2. Ubah IDR ke {ke.upper()} (Rate: {rates[ke]}):")
+        langkah.append(f"&nbsp;&nbsp;&nbsp;{idr} / {rates[ke]} = {round(res, 2)}")
+        
+    if dari == ke:
+        langkah.append("Tidak ada konversi (mata uang asal dan tujuan sama).")
     
     return {
         "hasil": round(res, 2),
         "rumus": f"{dari.upper()} → {ke.upper()}",
-        "langkah": f"{jumlah} {dari.upper()} dikonversi menjadi {round(res, 2)} {ke.upper()}"
+        "langkah": langkah
     }

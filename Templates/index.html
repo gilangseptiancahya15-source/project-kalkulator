@@ -254,7 +254,15 @@
                     <small>{{ hasil.rumus }}</small>
 
                     <h3>Langkah</h3>
-                    <small>{{ hasil.langkah }}</small>
+                    {% if hasil.langkah is string %}
+                        <small>{{ hasil.langkah }}</small>
+                    {% else %}
+                        <div class="langkah-list">
+                        {% for step in hasil.langkah %}
+                            <small style="display: block; margin-bottom: 2px;">{{ step | safe }}</small>
+                        {% endfor %}
+                        </div>
+                    {% endif %}
 
                 </div>
 
@@ -263,24 +271,49 @@
             {% endif %}
             
             <!-- HISTORY -->
-            {% if history and history|length > 0 %}
             <div class="history-section">
-                <h2>Riwayat Perhitungan</h2>
+                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h2 style="margin-bottom: 0;">Riwayat Perhitungan</h2>
+                    {% if history|length > 0 %}
+                    <form method="POST" action="/" style="margin: 0;">
+                        <input type="hidden" name="action" value="clear_history">
+                        <button type="submit" class="clear-btn" title="Hapus semua riwayat" style="background:#ff4d4d;color:#fff;border:none;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:0.8rem;font-weight:500;transition:background 0.2s;" onmouseover="this.style.background='#e60000'" onmouseout="this.style.background='#ff4d4d'">Hapus Semua</button>
+                    </form>
+                    {% endif %}
+                </div>
+                       {% if history|length > 0 %}
                 <ul class="history-list">
                     {% for item in history|reverse %}
                     <li>
-                        <div class="history-item">
+                        <div class="history-item" style="position:relative;">
+                            <form method="POST" action="/" style="position:absolute;top:4px;right:4px;margin:0;">
+                                <input type="hidden" name="action" value="delete_one">
+                                <input type="hidden" name="delete_index" value="{{ history|length - 1 - loop.index0 }}">
+                                <button type="submit" title="Hapus item ini" style="background:transparent;border:none;color:#ff4d4d;font-size:1.1rem;cursor:pointer;padding:2px 6px;border-radius:4px;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,77,77,0.15)'" onmouseout="this.style.background='transparent'">✕</button>
+                            </form>
                             <span class="history-result">{{ item.hasil }}</span>
                             <div class="history-detail">
-                                <strong>Rumus:</strong> {{ item.rumus }}<br>
-                                <strong>Langkah:</strong> {{ item.langkah }}
+                                <strong>Rumus:</strong> {{ item.rumus }}<br> 
+                                <strong>Langkah:</strong>
+                                {% if item.langkah is string %}
+                                    {{ item.langkah }}
+                                {% else %}
+
+                         <div class="langkah-list" style="margin-top: 5px;">
+                                    {% for step in item.langkah %}
+                                        <div style="margin-bottom: 2px;">{{ step | safe }}</div>
+                                    {% endfor %}
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                     </li>
                     {% endfor %}
                 </ul>
+                {% else %}
+                <p class="no-history" style="margin-top: 10px; color: #888; font-style: italic;">Belum ada riwayat perhitungan.</p>
+                {% endif %}
             </div>
-            {% endif %}
 
         </div>
 
