@@ -5,7 +5,9 @@ from modules.aritmatika import *
 from modules.logika import *
 from modules.transformasi import *
 
-app = Flask(__name__)
+app = Flask(__name__, 
+            template_folder=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates'),
+            static_folder=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static'))
 app.secret_key = os.environ.get("SECRET_KEY", "kalkulator-secret-key-2024")
 
 @app.route("/", methods=["GET", "POST"])
