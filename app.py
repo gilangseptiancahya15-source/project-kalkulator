@@ -1,24 +1,23 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
+import os
 
 from modules.aritmatika import *
 from modules.logika import *
 from modules.transformasi import *
 
 app = Flask(__name__)
-
-# HISTORY GLOBAL
-history = []
-
+app.secret_key = os.environ.get("SECRET_KEY", "kalkulator-secret-key-2024")
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-
+    if "history" not in session:
+        session["history"] = []
+    history = session["history"]
     hasil = None
-
     if request.method == "POST":
 
         if request.form.get("action") == "clear_history":
-            history.clear()
+            session["history"] = []
             return render_template("index.html", hasil=None, history=history)
 
          # Hapus satu item riwayat berdasarkan indeks
@@ -26,7 +25,10 @@ def index():
             try:
                 idx = int(request.form.get("delete_index", -1))
                 if 0 <= idx < len(history):
-                    history.pop(idx)
+                    if hasil:
+                        history.append(hasil)
+                        session["history"] = history
+                        session.modified = True
             except (ValueError, IndexError):
                 pass
             return render_template("index.html", hasil=None, history=history)
@@ -164,6 +166,8 @@ def index():
         # SIMPAN HISTORY
         if hasil:
             history.append(hasil)
+            session["history"] = history
+            session.modified = True
 
     return render_template(
         "index.html",
